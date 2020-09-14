@@ -1,12 +1,17 @@
+import { GenericItem } from './../app/Domain/GenericItem';
+import { ItemFactory } from './../app/Domain/ItemFactory';
 import { expect } from 'chai';
-import { Item, GildedRose } from '../app/gilded-rose';
+import { GildedRose } from '../app/Application/gilded-rose';
 
-describe('Gilded Rose', function () {
+describe('Gilded Rose', function () 
+{
 
-    it('should foo', function() {
-        const gildedRose = new GildedRose([ new Item('foo', 0, 0) ]);
+    it('should foo', function()
+    {
+        const genericItem = new GenericItem(new ItemFactory())
+        const gildedRose = new GildedRose([genericItem.create('foo', 0, 0) ]);
         const items = gildedRose.updateQuality();
-        expect(items[0].name).to.equal('fixme');
+        expect(items[0].getName()).to.equal('foo');
     });
 
 });
